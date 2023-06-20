@@ -3,16 +3,19 @@ const converterInputs = document.querySelectorAll(".converter-input");
 
 const length = {
   units: [`Meter`, `Foot`, `Inch`],
+  multiplier: 0.6214,
   formula: `Formula: for an approximate result, multiply the length value by 0.621`,
 };
 
 const mass = {
   units: [`Kilograms`, `Grams`, `Pounds`, `Ounces`],
+  multiplier: 2.35215,
   formula: `Formula: for an approximate result, multiply the fuel economy value by 2.35`,
 };
 
 const volume = {
   units: [`Liters`, `Milliliters`, `Gallons`],
+  multiplier: 0.001,
   formula: `Formula: divide the digital storage value by 1000`,
 };
 
