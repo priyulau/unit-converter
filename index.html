@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Unit Converter</title>
+</head>
+<body>
+    <div class="p-2 m-4 border rounded-lg w-3/5">
+        <!--Converter type selection-->
+        <div class="m-3 p-2">
+            <select name="conversion" id="conversion" class="w-full p-2 bg-slate-100">
+                <option value="" id=""></option>
+                <option value="mass" id="mass">Mass</option>
+                <option value="length" id="length">Length</option>
+                <option value="volume" id="volume">Volume</option>
+            </select>
+        </div>
+        <div class="m-3 p-2 flex justify-between">
+            <div class="w-full">
+                <input type="text" id="from-value" class="converter-input w-full p-2 text-center"></input><br>
+                <select id="from-unit" class="converter-input w-full bg-slate-100 p-2"></select>
+            </div>
+            <p class="mx-6">=</p>
+            <div class="w-full">
+                <input type="text" id="to-value" class="converter-input w-full p-2 text-center"></input><br>
+                <select id="to-unit" class="converter-input w-full bg-slate-100 p-2"></select>
+            </div>
+        </div>
+    </div>
+    <!--Javascript file link-->
+    <script src="script.js"></script>
+</body>
+</html>
