@@ -1,24 +1,41 @@
 const conversionType = document.querySelector("#conversion");
 const converterInputs = document.querySelectorAll(".converter-input");
 
+const length = {
+  units: [`Meter`, `Foot`, `Inch`],
+  multiplier: 0.6214,
+  formula: `Formula: for an approximate result, multiply the length value by 0.621`,
+};
+
+const mass = {
+  units: [`Kilograms`, `Grams`, `Pounds`, `Ounces`],
+  multiplier: 2.35215,
+  formula: `Formula: for an approximate result, multiply the fuel economy value by 2.35`,
+};
+
+const volume = {
+  units: [`Liters`, `Milliliters`, `Gallons`],
+  multiplier: 0.001,
+  formula: `Formula: divide the digital storage value by 1000`,
+};
+
 //event listener for conversion type dropdown
 conversionType.addEventListener("change", (event) => {
   updateUnits(event.target.value);
+  updateFormula(event.target.value);
 });
 
 //function that changes unit options based on conversion type dropdown
 function updateUnits(type) {
   if (type === `length`) {
-    const options = [`Meter`, `Foot`, `Inch`];
-    replaceUnits(options);
+    replaceUnits(length.units);
   }
   if (type === `mass`) {
-    const options = [`Kilograms`, `Grams`, `Pounds`, `Ounces`];
-    replaceUnits(options);
+    replaceUnits(mass.units);
   }
   if (type === `volume`) {
-    const options = [`Liters`, `Milliliters`, `Gallons`];
-    replaceUnits(options);
+    // const options = [`Liters`, `Milliliters`, `Gallons`];
+    replaceUnits(volume.units);
   }
 }
 
@@ -35,15 +52,46 @@ converterInputs.forEach((convertInputs) => {
       //grab the toUnit value at that moment in time
       toUnit: document.querySelector("#to-unit").value,
       //grab the category value at that moment in time
-      conversion: document.querySelector("#conversion").value
+      conversion: document.querySelector("#conversion").value,
     };
     getInputValues(inputValues);
+    updateMultiplier(inputValues.conversion);
   });
 });
 
 //function that will take the array from above and do...
 function getInputValues(inputValuesObject = {}) {
   console.log(inputValuesObject);
+}
+
+function updateMultiplier(type) {
+  if (type === `length`) {
+    calcNewValue(length.multiplier);
+  }
+  if (type === `mass`) {
+    calcNewValue(mass.multiplier);
+  }
+  if (type === `volume`) {
+    calcNewValue(volume.multiplier);
+  }
+}
+
+function calcNewValue(multiplierFactor) {
+  document.querySelector("#to-value").value =
+    document.querySelector("#from-value").value * multiplierFactor;
+}
+
+//function that updates the formula box based on type
+function updateFormula(type) {
+  if (type === `length`) {
+    document.querySelector("#formula").innerHTML = length.formula;
+  }
+  if (type === `mass`) {
+    document.querySelector("#formula").innerHTML = mass.formula;
+  }
+  if (type === `volume`) {
+    document.querySelector("#formula").innerHTML = volume.formula;
+  }
 }
 
 //function that actually makes the HTML DOM change
